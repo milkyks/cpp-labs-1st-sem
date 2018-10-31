@@ -64,15 +64,15 @@ BOOST_AUTO_TEST_CASE(IncorrectWidth)
   BOOST_CHECK_THROW(babintseva::Rectangle rect({4.0, 4.0}, -3.0, 5.0), std::invalid_argument);
 }
 
+BOOST_AUTO_TEST_CASE(IncorrectHeight)
+{
+  BOOST_CHECK_THROW(babintseva::Rectangle rect({4.0, 4.0}, 3.0, -5.0), std::invalid_argument);
+}
+
 BOOST_AUTO_TEST_CASE(IncorrectCoefficientInScaling)
 {
   babintseva::Circle cir({5.0, 4.0}, 3.0);
   BOOST_CHECK_THROW(cir.scale(-3.0), std::invalid_argument);
-}
-
-BOOST_AUTO_TEST_CASE(IncorrectHeight)
-{
-  BOOST_CHECK_THROW(babintseva::Rectangle rect({4.0, 4.0}, 3.0, -5.0), std::invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(AreaAndPositionAfterScaling)
