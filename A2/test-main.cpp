@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(AreaAndPositionAfterScaling)
   BOOST_CHECK_CLOSE(cir.getFrameRect().pos.y, 4.0, epsilon);
 }
 
-BOOST_AUTO_TEST_CASE(ParametersAfterRealtiveMoving)
+BOOST_AUTO_TEST_CASE(ParametersAfterRelativeMoving)
 {
   babintseva::Circle cir({5.0, 4.0}, 5.0);
 

@@ -18,6 +18,26 @@ CompositeShape::CompositeShape(const std::shared_ptr<Shape> &shape):
   shapes_[0] = shape;
 }
 
+void CompositeShape::addShape(const std::shared_ptr<Shape> &shape)
+{
+  if (shape == nullptr)
+  {
+    throw std::invalid_argument("Your shape is empty!");
+  }
+
+  std::unique_ptr<std::shared_ptr<Shape>[]> temp_shapes (new std::shared_ptr<Shape>[size_ + 1]);
+
+  for (size_t i = 0; i < size_; i++)
+  {
+    temp_shapes[i] = shapes_[i];
+  }
+
+  temp_shapes[size_] = shape;
+  size_++;
+
+  shapes_.swap(temp_shapes);
+}
+
 double CompositeShape::getArea() const
 {
   double sum_of_areas = 0.0;
@@ -134,24 +154,4 @@ void CompositeShape::scale(const double coefficient)
                      current_pos_of_comp_shape.y + coefficient * (shapes_[i]->getFrameRect().pos.y - current_pos_of_comp_shape.y)});
     shapes_[i]->scale(coefficient);
   }
-}
-
-void CompositeShape::addShape(const std::shared_ptr<Shape> &shape)
-{
-  if (shape == nullptr)
-  {
-    throw std::invalid_argument("Your shape is empty!");
-  }
-
-  std::unique_ptr<std::shared_ptr<Shape>[]> temp_shapes (new std::shared_ptr<Shape>[size_ + 1]);
-
-  for (size_t i = 0; i < size_; i++)
-  {
-    temp_shapes[i] = shapes_[i];
-  }
-
-  temp_shapes[size_] = shape;
-  size_++;
-
-  shapes_.swap(temp_shapes);
 }
